@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+/* Connect two arcs */
+void arc_connect(arc *arcs, unsigned int first, unsigned int second, 
+        unsigned int *pos)
+{
+    arcs[*pos].first = first;
+    arcs[*pos].second = second;
+    (*pos)++;
+}
+ 
+int main(void)
+{
+    const unsigned int size = 8; /* Arcs */
+    const unsigned int order = 8; /* Vertices */
+    arc *arcs = malloc(size * sizeof(arc));
+    unsigned int i = 0;
+    unsigned int *sorted;
+    unsigned int acyclic;
+ 
+    arc_connect(arcs, 0, 2, &i);
+    arc_connect(arcs, 1, 3, &i);
+    arc_connect(arcs, 2, 3, &i);
+    arc_connect(arcs, 2, 4, &i);
+    arc_connect(arcs, 2, 5, &i);
+    arc_connect(arcs, 3, 6, &i);
+    arc_connect(arcs, 5, 7, &i);
+    arc_connect(arcs, 5, 7, &i);
+ 
+    acyclic = topological_sort(arcs, size, order, &sorted);
+    printf("Graph is acyclic: %u\n", acyclic);
+    for (i = 0; i < order; i++) {
+        printf("%u ", sorted[i]);
+    }
+    putchar('\n');
+ 
+    free(sorted);
+    free(arcs);
+ 
+    return 0;
+}
