@@ -13,7 +13,7 @@ int main(){
 
     for(i = 0; i < I_MAX; i++)
     {
-    	dados = ler_dados_csv("camera_temp.csv", &linhas);
+    	dados = ler_dados_csv("toy_dataset.csv", &linhas);
     	clock_1 = clock();
     	radix_sort(dados, &linhas);
     	clock_2 = clock();
