@@ -1,25 +1,16 @@
 #ifndef DADO_H_INCLUDED
 
-/* Criação de tipo abstrato dado_t */
 typedef struct dados dado_t;
 
-/**
-  * @brief  Cria um novo dado
-  * @param  amostra: identificador da amostra
-  * @param  temperatura: valor da temperatura
-  * @param  timestamp: data e hora da amostra 
-  *
-  * @retval dado_t: ponteiro para uma novo dado
-  */
-dado_t * criar_dado (int amostra, float temperatura, char *city, char *gender, int age, float income, char *illness);
-fila_t *ler_dados_csv_fila(char *nome_do_arquivo);
-void liberar_dados(dado_t **vetor, int *n_linhas);
-void liberar_dados_fila(fila_t *fila);
+dado_t * criar_dado (int number, char *city, char *gender, int age, float income, char *illness);
+dado_t **ler_dados_csv(char *nome_do_arquivo, int *n_linhas);
+void liberar_dados (dado_t **vetor, int *n_linhas);
+void imprime_dados (dado_t **vetor, int *n_linhas);
 void radix_sort(dado_t **dados, int *linhas);
 
-/* Outras funções aqui: fazer os comentários */
-
-
-
+void quick_sort(dado_t **dados, int esq, int dir);
+int med_tres(dado_t **dados, int esq, int dir);
+int particao(dado_t **dados, int esq, int dir);
+void swap(dado_t **dados, int i, int j);
 
 #endif
